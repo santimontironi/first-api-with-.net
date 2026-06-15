@@ -1,0 +1,11 @@
+# Archivos con datos sensibles (no commitear)
+**/appsettings.Development.json
+**/appsettings.*.local.json
+
+# Build outputs
+**/bin/
+**/obj/
+
+# IDE / Visual Studio
+.vs/
+*.user
