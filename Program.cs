@@ -1,6 +1,14 @@
 using Microsoft.EntityFrameworkCore;
+using ApiEcommerce.Repository;
+using ApiEcommerce.Mapping;
+using Scalar.AspNetCore;
+
+DotNetEnv.Env.Load(); // carga las variables del archivo .env
 
 var builder = WebApplication.CreateBuilder(args); // crea el builder para configurar la app
+
+builder.Services.AddScoped<ICategoryRepository, CategoryRepository>(); //AddScope es para que cada vez que se solicite un ICategoryRepository se cree una nueva instancia
+builder.Services.AddScoped<CategoryMapper>(); //AddScope es para que cada vez que se solicite un CategoryMapper se cree una nueva instancia
 
 // Add services to the container.
 
@@ -16,6 +24,7 @@ var app = builder.Build(); // construye la app con los servicios configurados
 if (app.Environment.IsDevelopment()) // solo en entorno de desarrollo
 {
     app.MapOpenApi(); // expone el endpoint con el documento OpenAPI
+    app.MapScalarApiReference(); // UI interactiva en /scalar/v1
 }
 
 app.UseHttpsRedirection(); // redirige las peticiones HTTP a HTTPS

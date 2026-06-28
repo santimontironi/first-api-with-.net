@@ -9,3 +9,8 @@
 # IDE / Visual Studio
 .vs/
 *.user
+
+.claude
+
+# Variables de entorno (contienen datos sensibles)
+.env
